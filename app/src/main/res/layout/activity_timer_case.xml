@@ -7,24 +7,24 @@
     <include layout="@layout/include_toolbar"/>
 
     <TextView
-        android:id="@+id/tv_thread_content"
+        android:id="@+id/tv_timer_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/btn_thread_action"
+        android:id="@+id/btn_timer_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="start"/>
 
     <Button
-        android:id="@+id/btn_thread_action_static"
+        android:id="@+id/btn_timer_action_static"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="start with static class"/>
+        android:text="start inner class"/>
 
     <Button
-        android:id="@+id/btn_thread_action_executor"
+        android:id="@+id/btn_timer_action_executor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="start with executor"/>

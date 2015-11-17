@@ -14,7 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.zen.android.async.demo.ui.AsyncTaskCaseActivity;
 import com.zen.android.async.demo.ui.ThreadCaseActivity;
+import com.zen.android.async.demo.ui.TimerCaseActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -87,9 +89,9 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
             startActivity(new Intent(this, ThreadCaseActivity.class));
         } else if (id == R.id.nav_gallery) {
-
+            startActivity(new Intent(this, AsyncTaskCaseActivity.class));
         } else if (id == R.id.nav_slideshow) {
-
+            startActivity(new Intent(this, TimerCaseActivity.class));
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
