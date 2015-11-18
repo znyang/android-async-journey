@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.os.AsyncTaskCompat;
 
 import com.zen.android.async.demo.R;
 import com.zen.android.async.demo.biz.SomeActive;
@@ -47,12 +48,12 @@ public class AsyncTaskCaseActivity extends BaseCaseActivity {
     @TargetApi(11)
     @OnClick(R.id.btn_task_action_executor)
     void onStartTaskWithExecutors() {
-        if (Build.VERSION.SDK_INT >= 11) {
-            new SomeActiveTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        } else {
-            new SomeActiveTask().execute();
-        }
-//        AsyncTaskCompat.executeParallel(new SomeActiveTask());
+//        if (Build.VERSION.SDK_INT >= 11) {
+//            new SomeActiveTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//        } else {
+//            new SomeActiveTask().execute();
+//        }
+        AsyncTaskCompat.executeParallel(new SomeActiveTask());
     }
 
     public static class SomeActiveTask extends AsyncTask<Void, Void, Void> {
