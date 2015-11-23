@@ -38,7 +38,14 @@ public class HandlerBtActivity extends BaseCaseActivity {
 
     @OnClick(R.id.btn_handler_action_thread)
     void onClickActionWithThread() {
+        getWindow().getDecorView().getHandler().postDelayed(new Runnable() {
+            byte[] data = new byte[1000000];
 
+            @Override
+            public void run() {
+                Log.d("HandlerCase", "handle");
+            }
+        }, 100000);
     }
 
     private static class BtHandler extends Handler {

@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.zen.android.async.demo.ui.AsyncTaskCaseActivity;
+import com.zen.android.async.demo.ui.HandlerBtActivity;
 import com.zen.android.async.demo.ui.HandlerCaseActivity;
 import com.zen.android.async.demo.ui.ThreadCaseActivity;
 import com.zen.android.async.demo.ui.TimerCaseActivity;
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
             startActivity(new Intent(this, HandlerCaseActivity.class));
         } else if (id == R.id.nav_share) {
-
+            startActivity(new Intent(this, HandlerBtActivity.class));
         } else if (id == R.id.nav_send) {
 
         }
