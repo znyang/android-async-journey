@@ -17,7 +17,7 @@ import butterknife.OnClick;
 
 /**
  * ThreadCaseActivity
- * <p>
+ * <p/>
  *
  * @author yangz
  * @version 2015/11/16
@@ -47,6 +47,13 @@ public class ThreadCaseActivity extends BaseActivity {
 
     @OnClick(R.id.btn_thread_action)
     void onClickAction() {
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+            // do something
+        }
+    }).start();
+
         Thread thread = new Thread(createRunnable());
         thread.start();
     }
