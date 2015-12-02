@@ -13,6 +13,7 @@ import com.zen.android.async.demo.ui.base.BaseActivity;
 import com.zen.android.async.demo.ui.base.BaseCaseActivity;
 import com.zen.android.async.demo.ui.base.BaseToolbarActivity;
 
+import java.lang.ref.WeakReference;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -28,7 +29,6 @@ import butterknife.OnClick;
  */
 public class ThreadCaseActivity extends BaseCaseActivity {
 
-    private static ExecutorService executorService;
 
     @Bind(R.id.tv_thread_content)
     TextView mTvContent;
@@ -36,7 +36,6 @@ public class ThreadCaseActivity extends BaseCaseActivity {
     TextView mTvStatic;
     @Bind(R.id.tv_thread_executor)
     TextView mTvExecutor;
-
 
     @Override
     protected void onBaseCreate(Bundle state) {
@@ -70,10 +69,49 @@ public class ThreadCaseActivity extends BaseCaseActivity {
 
     @OnClick(R.id.btn_thread_action_executor)
     void onClickActionWithExecutor() {
+//        if (executorService == null) {
+//            executorService = Executors.newFixedThreadPool(3);
+//        }
+//        executorService.submit(new SomeActive());
+        useThread();
+    }
+
+    private static ExecutorService executorService;
+
+    void useThread() {
         if (executorService == null) {
             executorService = Executors.newFixedThreadPool(3);
         }
-        executorService.submit(new SomeActive());
+        executorService.submit(new Task(new Callback() {
+            @Override
+            public void callback() {
+                // on callback
+            }
+        }));
+    }
+
+    private interface Callback {
+        void callback();
+    }
+
+    private static class Task implements Runnable {
+
+        private byte[] data = new byte[1000000];
+        private final WeakReference<Callback> mRef;
+
+        public Task(Callback ref) {
+            mRef = new WeakReference<>(ref);
+        }
+
+        @Override
+        public void run() {
+            // do something
+            SystemClock.sleep(200000);
+            // callback
+            if (mRef.get() != null) {
+                mRef.get().callback();
+            }
+        }
     }
 
     @NonNull

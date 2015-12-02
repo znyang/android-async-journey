@@ -1,6 +1,7 @@
 package com.zen.android.async.demo.ui;
 
 import android.annotation.TargetApi;
+import android.database.Observable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ import butterknife.OnClick;
 
 /**
  * AsyncTaskCaseActivity
- * <p>
+ * <p/>
  *
  * @author yangz
  * @version 2015/11/17
@@ -61,6 +62,13 @@ public class AsyncTaskCaseActivity extends BaseCaseActivity {
 //            new SomeActiveTask().execute();
 //        }
         AsyncTaskCompat.executeParallel(new SomeActiveTask());
+//        crazyTask();
+    }
+
+    void crazyTask() {
+        for (int i = 10; --i >= 0; ) {
+            AsyncTaskCompat.executeParallel(new SomeActiveTask());
+        }
     }
 
     public static class SomeActiveTask extends AsyncTask<Void, Void, Void> {
