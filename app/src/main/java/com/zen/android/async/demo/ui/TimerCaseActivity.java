@@ -1,6 +1,8 @@
 package com.zen.android.async.demo.ui;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.zen.android.async.demo.R;
@@ -25,6 +27,12 @@ public class TimerCaseActivity extends BaseCaseActivity {
     @Override
     protected void onBaseCreate(Bundle state) {
         setContentView(R.layout.activity_timer_case);
+    }
+
+    @Override
+    protected void onSetupActionBar(ActionBar bar) {
+        super.onSetupActionBar(bar);
+        bar.setDisplayHomeAsUpEnabled(true);
     }
 
     @OnClick(R.id.btn_timer_action)

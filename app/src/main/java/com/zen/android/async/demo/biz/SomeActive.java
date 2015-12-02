@@ -16,9 +16,6 @@ public class SomeActive implements Runnable {
 
     @Override
     public void run() {
-        Log.d("SomeActive", "run start");
-//        Thread thread = Thread.currentThread();
-//        thread.setName(thread.getName() + " for SomeActive");
         SystemClock.sleep(2000000);
     }
 }

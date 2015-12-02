@@ -50,7 +50,8 @@ public class HomeActivity extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                System.gc();
+                Snackbar.make(view, "GC Success!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -97,6 +98,9 @@ public class HomeActivity extends BaseActivity {
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (holder.mItem.getClazz() == null) {
+                        return;
+                    }
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
                         arguments.putString(ItemDetailFragment.ARG_ITEM_ID, holder.mItem.id);

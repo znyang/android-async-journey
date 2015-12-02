@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.zen.android.async.demo"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.zen.android.async.demo"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
+        android:name=".DemoApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -41,6 +44,7 @@
         <activity
             android:name=".ui.home.HomeActivity"
             android:label="@string/title_item_list"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -51,7 +55,6 @@
         <activity
             android:name=".ui.home.ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName=".ui.home.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

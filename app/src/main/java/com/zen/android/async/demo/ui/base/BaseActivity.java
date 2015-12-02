@@ -3,6 +3,9 @@ package com.zen.android.async.demo.ui.base;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.squareup.leakcanary.LeakCanary;
+import com.zen.android.async.demo.util.LeakCanaryUtil;
+
 import butterknife.ButterKnife;
 
 /**
@@ -36,5 +39,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
+        LeakCanaryUtil.getRefWatcher().watch(this);
     }
 }

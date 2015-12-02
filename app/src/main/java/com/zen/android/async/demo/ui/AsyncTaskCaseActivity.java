@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.os.AsyncTaskCompat;
+import android.support.v7.app.ActionBar;
 
 import com.zen.android.async.demo.R;
 import com.zen.android.async.demo.biz.SomeActive;
@@ -24,6 +25,12 @@ public class AsyncTaskCaseActivity extends BaseCaseActivity {
     @Override
     protected void onBaseCreate(Bundle state) {
         setContentView(R.layout.activity_task_case);
+    }
+
+    @Override
+    protected void onSetupActionBar(ActionBar bar) {
+        super.onSetupActionBar(bar);
+        bar.setDisplayHomeAsUpEnabled(true);
     }
 
     @OnClick(R.id.btn_task_action)

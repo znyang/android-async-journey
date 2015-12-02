@@ -1,13 +1,17 @@
 package com.zen.android.async.demo.ui;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.zen.android.async.demo.R;
 import com.zen.android.async.demo.biz.SomeActive;
 import com.zen.android.async.demo.ui.base.BaseActivity;
+import com.zen.android.async.demo.ui.base.BaseCaseActivity;
+import com.zen.android.async.demo.ui.base.BaseToolbarActivity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -22,16 +26,17 @@ import butterknife.OnClick;
  * @author yangz
  * @version 2015/11/16
  */
-public class ThreadCaseActivity extends BaseActivity {
+public class ThreadCaseActivity extends BaseCaseActivity {
 
     private static ExecutorService executorService;
 
     @Bind(R.id.tv_thread_content)
     TextView mTvContent;
-    @Bind(R.id.toolbar)
-    Toolbar  mToolbar;
+    @Bind(R.id.tv_thread_static)
+    TextView mTvStatic;
+    @Bind(R.id.tv_thread_executor)
+    TextView mTvExecutor;
 
-    private byte[] data = new byte[2000000];
 
     @Override
     protected void onBaseCreate(Bundle state) {
@@ -39,23 +44,22 @@ public class ThreadCaseActivity extends BaseActivity {
     }
 
     @Override
-    protected void afterCreate(Bundle state) {
-        super.afterCreate(state);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle(getTitle());
+    protected void onSetupActionBar(ActionBar bar) {
+        super.onSetupActionBar(bar);
+        bar.setDisplayHomeAsUpEnabled(true);
     }
 
     @OnClick(R.id.btn_thread_action)
     void onClickAction() {
-    new Thread(new Runnable() {
-        @Override
-        public void run() {
-            // do something
-        }
-    }).start();
+        new Thread(new Runnable() {
+            byte[] data = new byte[10000000];
 
-        Thread thread = new Thread(createRunnable());
-        thread.start();
+            @Override
+            public void run() {
+                // 1000s
+                SystemClock.sleep(1000000);
+            }
+        }).start();
     }
 
     @OnClick(R.id.btn_thread_action_static)
